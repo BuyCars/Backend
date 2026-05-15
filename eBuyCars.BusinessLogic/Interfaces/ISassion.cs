@@ -1,17 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BuyCars.Domain.Entities.User;
+using BuyCars.Domain.Models.User;
+using eBuyCars.Domains.Entities.User;
 
-namespace eBuyCars.BusinessLogic 
+namespace BuyCars.BusinessLogic.Interfaces
 {
-    public class BussinessLogic
+    public interface ISession
     {
-        public ISession GetSessionBL()
-        {
-            return new SessionBL();
-        }
+        ULoginResp UserLogin(ULoginData data);
+        UserData? GetUserByCookie(string tokenValue);
+        void UserLogout(string tokenValue);
     }
 }

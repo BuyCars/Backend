@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BuyCars.BusinessLogic.Core;
+using BuyCars.BusinessLogic.Interfaces;
 
-namespace eBuyCars.BusinessLogic
+namespace BuyCars.BusinessLogic
 {
-    internal class BusinessLogic
+    public class BussinesLogic
     {
+        public ISession GetSessionBL() => new UserActions();
+
+        public IUserService GetUserBL() => new UserActions();
+
+        public ICarService GetCarBL() => new CarActions();
+
+        public IFavoriteService GetFavoriteBL() => new FavoriteActions();
     }
 }
