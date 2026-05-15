@@ -10,15 +10,15 @@ namespace BuyCars.Domain.Entities.Car
         public int Id { get; set; }
 
         [Required]
-        [StringLength(200)]
+        [StringLength(100)]
         public string Title { get; set; } = string.Empty;
 
         [Required]
-        [StringLength(100)]
+        [StringLength(50)]
         public string Brand { get; set; } = string.Empty;
 
         [Required]
-        [StringLength(100)]
+        [StringLength(50)]
         public string Model { get; set; } = string.Empty;
 
         [Required]
@@ -31,7 +31,6 @@ namespace BuyCars.Domain.Entities.Car
         [StringLength(500)]
         public string ImageUrl { get; set; } = string.Empty;
 
-        // sedan | suv | hatchback | sports | electric
         [StringLength(50)]
         public string Category { get; set; } = string.Empty;
 
@@ -39,15 +38,12 @@ namespace BuyCars.Domain.Entities.Car
 
         public int Mileage { get; set; }
 
-        // Бензин | Дизель | Гибрид | Электро
         [StringLength(50)]
         public string Fuel { get; set; } = string.Empty;
 
-        // Автомат | Механика
         [StringLength(50)]
         public string Transmission { get; set; } = string.Empty;
 
-        // new | used
         [StringLength(20)]
         public string Condition { get; set; } = "used";
 
