@@ -1,0 +1,91 @@
+using eBuyCars.Api.Filters;
+using eBuyCars.BusinessLogic;
+using eBuyCars.Domain.Entities.User;
+using eBuyCars.Domain.Models.Car;
+using Microsoft.AspNetCore.Mvc;
+
+namespace eBuyCars.Api.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CarController : ControllerBase
+    {
+        private readonly BussinesLogic _bl = new();
+
+        [HttpGet]
+        public IActionResult GetAll(
+            [FromQuery] string? category,
+            [FromQuery] string? condition,
+            [FromQuery] decimal? minPrice,
+            [FromQuery] decimal? maxPrice,
+            [FromQuery] string? search)
+        {
+            var carBl = _bl.GetCarBL();
+            var cars = carBl.GetAllCars(category, condition, minPrice, maxPrice, search);
+            return Ok(cars);
+        }
+
+        [HttpGet("{id:int}")]
+        public IActionResult GetById(int id)
+        {
+            var carBl = _bl.GetCarBL();
+            var car = carBl.GetCarById(id);
+
+            if (car == null)
+                return NotFound(new { message = $"јвтомобиль с ID {id} не найден" });
+
+            return Ok(car);
+        }
+
+        [HttpPost]
+        [UserMod]
+        public IActionResult Create([FromBody] CarCreateDto dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var currentUser = HttpContext.Items["CurrentUser"] as UserData;
+            if (currentUser == null) return Unauthorized();
+
+            var carBl = _bl.GetCarBL();
+            var car = carBl.CreateCar(dto, currentUser.Id);
+
+            return Created($"/api/car/{car.Id}", car);
+        }
+
+        [HttpPut("{id:int}")]
+        [UserMod]
+        public IActionResult Update(int id, [FromBody] CarCreateDto dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var currentUser = HttpContext.Items["CurrentUser"] as UserData;
+            if (currentUser == null) return Unauthorized();
+
+            var carBl = _bl.GetCarBL();
+            var updated = carBl.UpdateCar(id, dto, currentUser.Id, currentUser.Role);
+
+            if (updated == null)
+                return NotFound(new { message = "ќбъ€вление не найдено или нет прав на редактирование" });
+
+            return Ok(updated);
+        }
+
+        [HttpDelete("{id:int}")]
+        [UserMod]
+        public IActionResult Delete(int id)
+        {
+            var currentUser = HttpContext.Items["CurrentUser"] as UserData;
+            if (currentUser == null) return Unauthorized();
+
+            var carBl = _bl.GetCarBL();
+            var deleted = carBl.DeleteCar(id, currentUser.Id, currentUser.Role);
+
+            if (!deleted)
+                return NotFound(new { message = "ќбъ€вление не найдено или нет прав на удаление" });
+
+            return NoContent();
+        }
+    }
+}
