@@ -1,10 +1,10 @@
-﻿using BuyCars.BusinessLogic.Interfaces;
-using BuyCars.DataAccess.Context;
-using BuyCars.Domain.Entities.Car;
-using BuyCars.Domain.Models.Car;
-using Microsoft.AspNetCore.Cors.Infrastructure;
+﻿using eBuyCars.BusinessLogic.Interfaces;
+using eBuyCars.DataAccess.Context;
+using eBuyCars.Domain.Entities.Car;
+using eBuyCars.Domain.Models.Car;
 
-namespace BuyCars.BusinessLogic.Core
+
+namespace eBuyCars.BusinessLogic.Core
 {
     public class CarActions : ICarService
     {

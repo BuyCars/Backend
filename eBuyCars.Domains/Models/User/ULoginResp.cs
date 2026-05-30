@@ -1,4 +1,4 @@
-﻿namespace BuyCars.Domain.Models.User
+﻿namespace eBuyCars.Domain.Models.User
 {
     public class ULoginResp
     {

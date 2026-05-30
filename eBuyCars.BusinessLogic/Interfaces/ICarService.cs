@@ -1,7 +1,7 @@
-﻿using BuyCars.Domain.Entities.Car;
-using BuyCars.Domain.Models.Car;
+﻿using eBuyCars.Domain.Entities.Car;
+using eBuyCars.Domain.Models.Car;
 
-namespace BuyCars.BusinessLogic.Interfaces
+namespace eBuyCars.BusinessLogic.Interfaces
 {
     public interface ICarService
     {

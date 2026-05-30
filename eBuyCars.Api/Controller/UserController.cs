@@ -1,72 +1,106 @@
-﻿using eBuyCars.Api.Domain;
-using Microsoft.AspNetCore.Http;
+﻿using eBuyCars.Api.Filters;
+using eBuyCars.BusinessLogic;
+using eBuyCars.Domain.Entities.User;
+using eBuyCars.Domain.Models.User;
 using Microsoft.AspNetCore.Mvc;
 
-namespace eBuyCars.Api.Controller
+namespace eBuyCars.Api.Controllers
 {
-    [Route(template: "api/user")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase    
+    public class UserController : ControllerBase
     {
-        private static List<User> _users = new();
-        private static int nextId = 1;
+        private readonly BussinesLogic _bl = new();
 
-        [HttpGet(template:"all")]
 
-        public IActionResult GetAllUsers()
+        [HttpGet("all")]
+        [AdminMod]
+        public IActionResult GetAll()
         {
-            return Ok(_users);
+            var userBl = _bl.GetUserBL();
+            var users = userBl.GetAllUsers();
+
+            var result = users.Select(u => new
+            {
+                u.Id,
+                u.UserName,
+                u.Email,
+                u.FirstName,
+                u.LastName,
+                u.Phone,
+                u.Role,
+                u.RegisteredOn,
+                u.LastLogin
+            });
+
+            return Ok(result);
         }
 
-        [HttpGet(template: "{id}")]
-
-        public IActionResult GetUserById(int id)
+        [HttpGet("{id:int}")]
+        [UserMod]
+        public IActionResult GetById(int id)
         {
-            var user = _users.FirstOrDefault(u => u.Id == id);
+            var userBl = _bl.GetUserBL();
+            var user = userBl.GetUserById(id);
+
             if (user == null)
+                return NotFound(new { message = $"Пользователь с ID {id} не найден" });
+
+            return Ok(new
             {
-                return NotFound(new { Message = $"User with ID {id} not found" });
-            }
-            return Ok(user);
+                user.Id,
+                user.UserName,
+                user.Email,
+                user.FirstName,
+                user.LastName,
+                user.Phone,
+                user.Role,
+                user.RegisteredOn
+            });
         }
 
 
-        [HttpPost]
-        public IActionResult CreateUser([FromBody] User user)
+        [HttpPut("{id:int}")]
+        [UserMod]
+        public IActionResult Update(int id, [FromBody] UserRegisterDto dto)
         {
-            user. Id = nextId++;
-            user. CreatedAt = DateTime.UtcNow;
+            var currentUser = HttpContext.Items["CurrentUser"] as UserData;
+            if (currentUser == null) return Unauthorized();
 
-            _users.Add(user);
+            if (currentUser.Id != id && currentUser.Role != "admin")
+                return StatusCode(403, new { message = "Нет прав на редактирование этого профиля" });
 
-            return Created(uri: $"/api/users/{user.Id}", user);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
+            var userBl = _bl.GetUserBL();
+            var updated = userBl.UpdateUser(id, dto);
+
+            if (updated == null)
+                return NotFound(new { message = "Пользователь не найден" });
+
+            return Ok(new
+            {
+                updated.Id,
+                updated.UserName,
+                updated.Email,
+                updated.FirstName,
+                updated.LastName,
+                updated.Phone
+            });
         }
 
-        [HttpPut(template: "{id}")]
-        public IActionResult UpdateUser(int id, [FromBody] User updatedUser)
-        {
-            var existingUser = _users.FirstOrDefault(u => u.Id == id);
 
-            if (existingUser == null)
-            {
-                return NotFound(new { Message = $"User with ID {id} not found" });
-            }
-            existingUser.UserName = updatedUser.UserName;
-            existingUser.Email = updatedUser.Email;
-            
-            return Ok(existingUser);
-        }   
-
-        [HttpDelete(template: "{id}")]
-        public IActionResult DeleteUser(int id)
+        [HttpDelete("{id:int}")]
+        [AdminMod]
+        public IActionResult Delete(int id)
         {
-            var user = _users.FirstOrDefault(u => u.Id == id);
-            if (user == null)
-            {
-                return NotFound(new { Message = $"User with ID {id} not found" });
-            }
-            _users.Remove(user);
+            var userBl = _bl.GetUserBL();
+            var deleted = userBl.DeleteUser(id);
+
+            if (!deleted)
+                return NotFound(new { message = $"Пользователь с ID {id} не найден" });
+
             return NoContent();
         }
     }

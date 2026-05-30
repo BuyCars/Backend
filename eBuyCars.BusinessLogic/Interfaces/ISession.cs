@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using eBuyCars.Domain.Entities.User;
+using eBuyCars.Domain.Models.User;
+using eBuyCars.Domains.Entities.User;
 
 namespace eBuyCars.BusinessLogic.Interfaces
 {
-    internal interface ISession
+    public interface ISession
     {
+        ULoginResp UserLogin(ULoginData data);
+        UserData? GetUserByCookie(string tokenValue);
+        void UserLogout(string tokenValue);
     }
 }
