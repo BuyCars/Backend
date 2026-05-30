@@ -1,17 +1,15 @@
-﻿using BuyCars.BusinessLogic.Interfaces;
-using BuyCars.BusinessLogic.Structure;
-using BuyCars.DataAccess.Context;
-using BuyCars.Domain.Entities.User;
-using BuyCars.Domain.Models.User;
-using eBuyCars.BusinessLogic.Interfaces;
+﻿using eBuyCars.BusinessLogic.Interfaces;
+using eBuyCars.BusinessLogic.Structure;
+using eBuyCars.DataAccess.Context;
+using eBuyCars.Domain.Entities.User;
+using eBuyCars.Domain.Models.User;
 using eBuyCars.Domains.Entities.User;
 using System.ComponentModel.DataAnnotations;
 
-namespace BuyCars.BusinessLogic.Core
+namespace eBuyCars.BusinessLogic.Core
 {
     public class UserActions : ISession, IUserService
     {
-
         public ULoginResp UserLogin(ULoginData data)
         {
             var validate = new EmailAddressAttribute();

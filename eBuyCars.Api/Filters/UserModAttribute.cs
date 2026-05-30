@@ -1,8 +1,8 @@
-﻿using BuyCars.BusinessLogic;
+﻿using eBuyCars.BusinessLogic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace BuyCars.Api.Filters
+namespace eBuyCars.Api.Filters
 {
     public class UserModAttribute : ActionFilterAttribute
     {

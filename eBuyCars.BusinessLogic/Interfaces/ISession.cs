@@ -1,8 +1,8 @@
-﻿using BuyCars.Domain.Entities.User;
-using BuyCars.Domain.Models.User;
+﻿using eBuyCars.Domain.Entities.User;
+using eBuyCars.Domain.Models.User;
 using eBuyCars.Domains.Entities.User;
 
-namespace BuyCars.BusinessLogic.Interfaces
+namespace eBuyCars.BusinessLogic.Interfaces
 {
     public interface ISession
     {

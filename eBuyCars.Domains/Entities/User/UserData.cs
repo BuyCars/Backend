@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BuyCars.Domain.Entities.User
+namespace eBuyCars.Domain.Entities.User
 {
     public class UserData
     {

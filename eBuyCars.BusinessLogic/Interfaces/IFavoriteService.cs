@@ -1,6 +1,6 @@
-﻿using BuyCars.Domain.Entities.Favorite;
+﻿using eBuyCars.Domain.Entities.Favorite;
 
-namespace BuyCars.BusinessLogic.Interfaces
+namespace eBuyCars.BusinessLogic.Interfaces
 {
     public interface IFavoriteService
     {

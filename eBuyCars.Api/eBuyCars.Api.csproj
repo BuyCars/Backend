@@ -15,4 +15,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eBuyCars.BusinessLogic\eBuyCars.BusinessLogic.csproj" />
+    <ProjectReference Include="..\eBuyCars.DataAccess\eBuyCars.DataAccess.csproj" />
+    <ProjectReference Include="..\eBuyCars.Domains\eBuyCars.Domains.csproj" />
+  </ItemGroup>
+
 </Project>

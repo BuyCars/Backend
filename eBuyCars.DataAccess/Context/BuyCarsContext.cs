@@ -1,11 +1,11 @@
-﻿using BuyCars.Domain.Entities.Car;
-using BuyCars.Domain.Entities.Favorite;
-using BuyCars.Domain.Entities.User;
+﻿using eBuyCars.Domain.Entities.Car;
+using eBuyCars.Domain.Entities.Favorite;
+using eBuyCars.Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
-namespace BuyCars.DataAccess.Context
+namespace eBuyCars.DataAccess.Context
 {
     public class BuyCarsContext : DbContext
     {

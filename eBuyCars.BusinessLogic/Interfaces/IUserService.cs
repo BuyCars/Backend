@@ -1,7 +1,7 @@
-﻿using BuyCars.Domain.Entities.User;
-using BuyCars.Domain.Models.User;
+﻿using eBuyCars.Domain.Entities.User;
+using eBuyCars.Domain.Models.User;
 
-namespace BuyCars.BusinessLogic.Interfaces
+namespace eBuyCars.BusinessLogic.Interfaces
 {
     public interface IUserService
     {

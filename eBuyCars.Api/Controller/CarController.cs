@@ -1,10 +1,10 @@
-using BuyCars.Api.Filters;
-using BuyCars.BusinessLogic;
-using BuyCars.Domain.Entities.User;
-using BuyCars.Domain.Models.Car;
+using eBuyCars.Api.Filters;
+using eBuyCars.BusinessLogic;
+using eBuyCars.Domain.Entities.User;
+using eBuyCars.Domain.Models.Car;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BuyCars.Api.Controllers
+namespace eBuyCars.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -32,11 +32,12 @@ namespace BuyCars.Api.Controllers
             var car = carBl.GetCarById(id);
 
             if (car == null)
-                return NotFound(new { message = $"§Ў§У§д§а§Ю§а§Т§Ъ§Э§о §г ID {id} §Я§Ц §Я§С§Ы§Х§Ц§Я" });
+                return NotFound(new { message = $"Автомобиль с ID {id} не найден" });
 
             return Ok(car);
         }
 
+        [HttpPost]
         [UserMod]
         public IActionResult Create([FromBody] CarCreateDto dto)
         {
@@ -66,7 +67,7 @@ namespace BuyCars.Api.Controllers
             var updated = carBl.UpdateCar(id, dto, currentUser.Id, currentUser.Role);
 
             if (updated == null)
-                return NotFound(new { message = "§°§Т§м§с§У§Э§Ц§Я§Ъ§Ц §Я§Ц §Я§С§Ы§Х§Ц§Я§а §Ъ§Э§Ъ §Я§Ц§д §б§в§С§У §Я§С §в§Ц§Х§С§Ь§д§Ъ§в§а§У§С§Я§Ъ§Ц" });
+                return NotFound(new { message = "Объявление не найдено или нет прав на редактирование" });
 
             return Ok(updated);
         }
@@ -82,7 +83,7 @@ namespace BuyCars.Api.Controllers
             var deleted = carBl.DeleteCar(id, currentUser.Id, currentUser.Role);
 
             if (!deleted)
-                return NotFound(new { message = "§°§Т§м§с§У§Э§Ц§Я§Ъ§Ц §Я§Ц §Я§С§Ы§Х§Ц§Я§а §Ъ§Э§Ъ §Я§Ц§д §б§в§С§У §Я§С §е§Х§С§Э§Ц§Я§Ъ§Ц" });
+                return NotFound(new { message = "Объявление не найдено или нет прав на удаление" });
 
             return NoContent();
         }

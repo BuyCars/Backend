@@ -1,12 +1,11 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace BuyCars.BusinessLogic.Structure
+namespace eBuyCars.BusinessLogic.Structure
 {
     public static class TokenService
     {
-        private const string SaltData = "BuyCars_SecretSalt_2024";
-
+        private const string SaltData = "eBuyCars_SecretSalt_2024";
         public static string GenerateToken()
         {
             var tokenBytes = new byte[32];

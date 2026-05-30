@@ -1,4 +1,4 @@
-﻿namespace BuyCars.DataAccess
+﻿namespace eBuyCars.DataAccess
 {
     public static class DbSession
     {

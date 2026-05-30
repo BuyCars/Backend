@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BuyCars.Domain.Entities.Favorite
+namespace eBuyCars.Domain.Entities.Favorite
 {
     public class FavoriteData
     {

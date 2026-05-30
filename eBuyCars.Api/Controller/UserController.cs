@@ -1,10 +1,10 @@
-﻿using BuyCars.Api.Filters;
-using BuyCars.BusinessLogic;
-using BuyCars.Domain.Entities.User;
-using BuyCars.Domain.Models.User;
+﻿using eBuyCars.Api.Filters;
+using eBuyCars.BusinessLogic;
+using eBuyCars.Domain.Entities.User;
+using eBuyCars.Domain.Models.User;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BuyCars.Api.Controllers
+namespace eBuyCars.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,7 +19,7 @@ namespace BuyCars.Api.Controllers
         {
             var userBl = _bl.GetUserBL();
             var users = userBl.GetAllUsers();
-s
+
             var result = users.Select(u => new
             {
                 u.Id,

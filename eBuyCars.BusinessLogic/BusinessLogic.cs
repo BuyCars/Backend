@@ -1,7 +1,7 @@
-﻿using BuyCars.BusinessLogic.Core;
-using BuyCars.BusinessLogic.Interfaces;
+﻿using eBuyCars.BusinessLogic.Core;
+using eBuyCars.BusinessLogic.Interfaces;
 
-namespace BuyCars.BusinessLogic
+namespace eBuyCars.BusinessLogic
 {
     public class BussinesLogic
     {
