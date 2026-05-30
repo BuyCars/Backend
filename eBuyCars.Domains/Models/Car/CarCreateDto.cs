@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BuyCars.Domain.Models.Car
+namespace eBuyCars.Domain.Models.Car
 {
     public class CarCreateDto
     {

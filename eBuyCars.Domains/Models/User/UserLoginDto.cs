@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BuyCars.Domain.Models.User
+namespace eBuyCars.Domain.Models.User
 {
     public class UserLoginDto
     {

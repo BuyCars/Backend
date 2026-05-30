@@ -1,9 +1,9 @@
-using BuyCars.Api.Filters;
-using BuyCars.BusinessLogic;
-using BuyCars.Domain.Entities.User;
+using eBuyCars.Api.Filters;
+using eBuyCars.BusinessLogic;
+using eBuyCars.Domain.Entities.User;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BuyCars.Api.Controllers
+namespace eBuyCars.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,8 +1,8 @@
-﻿using BuyCars.BusinessLogic.Interfaces;
-using BuyCars.DataAccess.Context;
-using BuyCars.Domain.Entities.Favorite;
+﻿using eBuyCars.BusinessLogic.Interfaces;
+using eBuyCars.DataAccess.Context;
+using eBuyCars.Domain.Entities.Favorite;
 
-namespace BuyCars.BusinessLogic.Core
+namespace eBuyCars.BusinessLogic.Core
 {
     public class FavoriteActions : IFavoriteService
     {
