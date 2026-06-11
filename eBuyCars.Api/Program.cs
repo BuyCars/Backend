@@ -20,12 +20,12 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "BuyCars API",
         Version = "v1",
-        Description = "REST API for BuyCars — car buying and selling platform"
+        Description = "REST API for BuyCars ?car buying and selling platform"
     });
 });
 var allowedOrigins = builder.Configuration
     .GetSection("Cors:AllowedOrigins")
-    .Get<string[]>() ?? new[] { "http://localhost:5173" };
+    .Get<string[]>() ?? new[] { "http://localhost:5000" };
 
 builder.Services.AddCors(options =>
 {
